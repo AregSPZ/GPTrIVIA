@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+torch = "*"
+transformers = "*"
+sentence-transformers = "*"
+flask = "*"
+flask-wtf = "*"
+wtforms = "*"
+langchain = "*"
+langgraph = "*"
+requests = "*"
+langchain-community = "*"
+typing-extensions = "*"
+langchain-huggingface = "*"
+asyncio = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"

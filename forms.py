@@ -9,6 +9,8 @@ class TopicForm(FlaskForm):
 
 class AnswerField(FlaskForm):
     '''The field for submitting an answer to a question'''
+    class Meta:
+        csrf = False  # Disable CSRF for nested forms (avoid overlap, its already handled by the parent form)
     answer = StringField('Your Answer', validators=[DataRequired()])
 
 class QuizForm(FlaskForm):

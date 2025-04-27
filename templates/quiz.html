@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {% for question, answer_field in pairs %}
+        <div>
+            <p><strong>{{ question }}</strong></p>
+            {{ answer_field.answer(size=50) }}
+        </div>
+    {% endfor %}
+    {{ form.submit_field() }}
+</form>
+{% endblock %}

@@ -1,3 +1,8 @@
+### WHAT TO DO
+
+1) do the frontend
+
+
 # LLM Powered Quiz (Unfinished)
 
 ## Features

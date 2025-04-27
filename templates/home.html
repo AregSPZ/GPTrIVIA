@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Welcome to the Quiz Generator</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <label for="topic">{{ form.topic.label }}</label>
+    {{ form.topic(size=50) }}
+    {{ form.submit_field() }}
+</form>
+{% endblock %}
