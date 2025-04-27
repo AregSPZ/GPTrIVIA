@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h2>{{ title }}</h2>
+<h1>{{ title }}</h1>
+<br>
 <form method="POST">
     {{ form.hidden_tag() }}
     {% for question, answer_field in pairs %}
@@ -12,4 +13,5 @@
     {% endfor %}
     {{ form.submit_field() }}
 </form>
+<h3><strong>Note:</strong> While you take this quiz, we're forming the answers for the questions under the hood. You'll be redirected to the results page as soon as they are ready.</h3>
 {% endblock %}

@@ -1,13 +1,32 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0; /* Reset default margin */
     padding: 0;
+    min-height: 100vh; /* Ensure body takes at least the full viewport height */
     background-color: #f4f4f9;
-    color: #333;
+    color: aliceblue;
+    background: linear-gradient(to bottom, blue, purple);
 }
 
+h1, h2, h3, h4, h5, h6, p {
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+a {
+    color: rgb(154, 213, 186);
+    text-align: center;
+    margin-top: 20px;
+}
+
+form {
+    margin: 20px auto; /* Center the form horizontally */
+    text-align: center; /* Center the content inside the form */
+}
+
+
 header {
-    background-color: #007BFF;
     color: white;
     padding: 10px 20px;
     text-align: center;
@@ -17,11 +36,6 @@ footer {
     text-align: center;
     margin-top: 20px;
     font-size: 0.9em;
-    color: #666;
-}
-
-h1, h2 {
-    color: #444;
 }
 
 form {
@@ -37,12 +51,29 @@ input[type="text"] {
 
 button, input[type="submit"] {
     padding: 10px 20px;
-    background-color: #007BFF;
+    background-color: rgb(211, 0, 0);
     color: white;
     border: none;
     cursor: pointer;
 }
 
 button:hover, input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: darkred;
+}
+
+#disclaimer {
+    background-color: rgb(255, 203, 211);
+    font-weight: bold;
+    color: black;
+    border-radius: 10px;
+}
+
+#quas {
+    text-align: left;
+    margin-left: 15%;
+}
+
+#wait-message {
+    text-align: center;
+    margin: 20%;
 }

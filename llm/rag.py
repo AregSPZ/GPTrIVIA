@@ -112,19 +112,19 @@ def generate_answer(qtopic, question, model_name="gpt2-xl",save_path="squad_fais
 
     # define application steps (retrieval and generation)
     def retrieve(state: State):
-        # retrieve 4 documents as thats how much fits into gpt2-xl's context window + the prompt and generated answer
+        # retrieve the most similar text from the vector database and use it as context
         retrieved_docs = vector_store.similarity_search(state['question'])
         # this node generates the context, so we return it
         return {"context": retrieved_docs}
     
     def generate(state: State):
         # merge the retrieved docs to pass it as one entity
-        # explicitly mention which topic each context belongs to
         docs_content = "\n\n".join(doc.page_content for doc in state["context"])
         # invoke our prompt (generate the prompt by passing the parameters to the general template)
         prompt_text = rag_prompt.invoke({"qtopic": state["qtopic"], "question": state["question"], "context": docs_content})
 
-        # pass the prompt to llm, generate the answer. # keep only the generated part
+        # pass the prompt to llm, generate the answer
+        # keep only the generated part
         answer = llm.invoke(prompt_text)[len(prompt_text.to_string()):].strip()
 
         return {"answer": answer}

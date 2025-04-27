@@ -36,35 +36,22 @@ def generate_answers(topic, questions):
 
 
 def get_scores(answers, user_answers):
-    '''Assign scores to user answers using a weighted average of exact matching and cosine similarity computed by a sentence transformer'''
+    '''Assign scores to user answers using a cosine similarity computed by a sentence transformer'''
     model = SentenceTransformer('all-MiniLM-L6-v2')
-    scores = []    
+    scores = []
+    # cosine similarity
     for i in range(len(answers)):
         # if the user hasnt provided an answer for a question
         if not user_answers[i]:
             scores.append(0)
         else:
-            # define weights for exact matching score and cosine similarity
-            alpha, beta = 0, 0
-            words = len(user_answers[i].split(' '))
-            if len(words) <= 3:
-                alpha, beta = 0.8, 0.2
-            else:
-                alpha, beta = 0.3, 0.7
-            # exact matching (bigger weight for short answers)
-            exact_matching_score = 0
-            for word in words:
-                if word.lower() in answers[i].lower():
-                    exact_matching_score += 1 / len(words)
-            # cosine similarity (bigger weight for longer answers)
+            # compute embeddings
             embedding_true = model.encode(answers[i])
             embedding_user = model.encode(user_answers[i])
             # compute cosine similarity between embeddings
             cos_similarity = util.cos_sim(embedding_true, embedding_user)
-            cosine_score = max(0, cos_similarity[0].item())
-
-            final_score = round(alpha * exact_matching_score + beta * cosine_score, 2)
-            scores.append(final_score)
-
+            raw_score = cos_similarity[0].item()
+            raw_score_rounded = round(raw_score, 2)
+            scores.append(max(0, raw_score_rounded))
 
     return scores

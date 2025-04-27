@@ -16,7 +16,6 @@ requests = "*"
 langchain-community = "*"
 typing-extensions = "*"
 langchain-huggingface = "*"
-asyncio = "*"
 
 [dev-packages]
 

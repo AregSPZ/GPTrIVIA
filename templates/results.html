@@ -1,11 +1,19 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h2>{{ title }}</h2>
-<ul>
-    {% for score in scores %}
-        <li>Question {{ loop.index }}: {{ score }}</li>
-    {% endfor %}
-</ul>
-<a href="{{ url_for('home') }}">Take another quiz</a>
+<h1>{{ title }}</h1>
+<h3>Congratulations on completing the quiz! Here are your results:</h3><br>
+{% for question, user_answer, answer, score in quiz_data %}
+    <h4 id="quas">Question {{ loop.index }}: {{ question }}<br>
+        Your Answer: {{ user_answer }}<br>
+        True Answer: {{ answer }}<br>
+        Score: {{ score }}<br><br>
+    </h4>
+{% endfor %}
+<br>
+<div style="text-align: center;">
+    <h3>Total Score: {{ total_score }} ({{ grade }}%)</h3>
+    <h3>We hope you loved it!</h3>
+    <a href="{{ url_for('home') }}"><strong>Take another quiz</strong></a>
+</div>
 {% endblock %}

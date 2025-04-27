@@ -21,7 +21,7 @@ def home():
     # whenever the topic is recieved, generate questions and redirect user to the quiz page
     if topic_form.validate_on_submit():
         # something is the default quiz topic
-        session['topic'] = topic_form.topic.data if topic_form.topic.data else "something"
+        session['topic'] = topic_form.topic.data.title() if topic_form.topic.data else "Something"
         # take the prepared questions and answer generation task (triggering it generates the answers)
         session['questions'] = generate_questions(session['topic'])
         # store the number of generated questions
@@ -56,24 +56,31 @@ def quiz():
     # whenever the answers are submitted
     if quiz_form.validate_on_submit():
         # collect the answers from each field (nested subform)
-        user_answers = [answer_field.answer.data for answer_field in quiz_form.answer_fields]
+        session['user_answers'] = [answer_field.answer.data for answer_field in quiz_form.answer_fields]
         # wait for the answer generation process to end
         print("Waiting for answers...")
         answers_queue = app.answers_queue
-        answers = answers_queue.get()
+        # get the answers when theyre ready
+        answers = answers_queue.get() 
+        # wait for the generation process to terminate (typically the same moment as when the answers are ready)
         app.answer_generation_process.join()
         session['answers'] = answers
         # compute the scores by passing the generated answers and user answers
-        session['scores'] = get_scores(session['answers'], user_answers)
+        session['scores'] = get_scores(session['answers'], session['user_answers'])
+        # redirect the user to results page with the scores
         return redirect(url_for('results'))
 
     # pair each question with corresponding answer field
     pairs = zip(questions, quiz_form.answer_fields)
-    return render_template('quiz.html', form=quiz_form, pairs=pairs, title=f'{session.get('topic').title()} Quiz')
+    return render_template('quiz.html', form=quiz_form, pairs=pairs, title=f'{session.get('topic')} Quiz')
 
 @app.route('/results')
 def results():
-    return render_template('results.html', scores=session.get('scores'), title=f'{session['topic']} Quiz Results')
+    # zip all the quiz data
+    quas = zip(session['questions'], session['user_answers'], session['answers'], session['scores'])
+    total_score = sum(session['scores'])
+    grade = round(100 * total_score / session['num_questions'], 1)
+    return render_template('results.html', quiz_data=quas, total_score=total_score, grade=grade, title=f'{session['topic']} Quiz Results')
 
 
 if __name__ == '__main__':
