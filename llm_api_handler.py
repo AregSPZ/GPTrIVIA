@@ -82,7 +82,7 @@ def generate_qa(num_questions=10, difficulty="Gradual", topic="General"):
     print(questions, answers, '\n', num_questions_actual)
 
     # if 0 detected (topic is too niche to generate a meaningful quiz)
-    if all(s == '0' for s in questions):
+    if all(s == '0' for s in answers):
         return (None, None, None)
     
     # in case the model generates a fewer questions than user asked, adjust the quiz size accordingly (its better than generating nothing at all by sending an error)

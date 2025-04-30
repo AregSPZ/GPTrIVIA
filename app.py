@@ -75,7 +75,7 @@ def quiz():
 def results():
     # zip all the quiz data
     quasf = zip(session['questions'], session['user_answers'], session['answers'], session['scores'], session['feedback'])
-    total_score = sum(session['scores'])
+    total_score = round(sum(session['scores']), 2)
     grade = round(100 * total_score / session['num_questions'], 2)
     return render_template('results.html', quiz_data=quasf, total_score=total_score, grade=grade, title=f'{session['topic']}: Quiz Results')
 
