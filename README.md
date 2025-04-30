@@ -1,4 +1,4 @@
-# GPTrIVIA - LLM Powered Quiz (Gemini 2.0 Flash, Flask, Docker)
+# GemMind - LLM Powered Quiz Web Application (Gemini 2.0 Flash, Flask, Docker)
 
 ## Overview
 GemMind is an interactive quiz platform powered by an advanced language model - Gemini 2.0 Flash. The application gives you an opportunity to take a quiz on any topic of interest and get scores and personalized feedback at the end. Its built with Flask for a seamless web interface and is fully containerized using Docker for easy deployment.
