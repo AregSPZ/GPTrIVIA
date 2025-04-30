@@ -68,11 +68,11 @@ def generate_qa(num_questions=10, difficulty="Gradual", topic="General"):
     # catch API service error
     except Exception as e:
         print(f"Caught Exception when trying to generate quiz:\n {e}")
-        return (None, None)
+        return (None, None, None)
     
     # the reponse is None if the topic was filtered
     if not response:
-        return (None, None)
+        return (None, None, None)
     
     # while the output is formatted like a json file, its still a string
     response_json = json.loads(response.text)[0]    
@@ -83,7 +83,7 @@ def generate_qa(num_questions=10, difficulty="Gradual", topic="General"):
 
     # if 0 detected (topic is too niche to generate a meaningful quiz)
     if any(s == '0' for s in questions):
-        return (None, None)
+        return (None, None, None)
     
     # in case the model generates a fewer questions than user asked, adjust the quiz size accordingly (its better than generating nothing at all by sending an error)
     return questions, answers, num_questions_actual
