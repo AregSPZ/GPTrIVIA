@@ -1,3 +1,4 @@
+import os
 import json
 import tempfile
 from flask import Flask, render_template, redirect, url_for, session
@@ -12,10 +13,7 @@ app.config["SESSION_FILE_DIR"] = tempfile.gettempdir()
 app.config["SESSION_PERMANENT"] = False
 Session(app)
 # get app's secret key
-with open('config.json', 'r') as config_file:
-    config = json.load(config_file)
-    app.secret_key = config.get("APP_SECRET_KEY")
-    if not app.secret_key: raise ValueError("App secret key not found in config.json")
+app.secret_key = os.environ.get("APP_SECRET_KEY")
 
 
 @app.route('/', methods=['GET', 'POST'])

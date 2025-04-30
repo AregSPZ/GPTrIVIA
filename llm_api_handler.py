@@ -1,3 +1,4 @@
+import os
 import json
 import google.genai as genai
 from google.genai.types import SafetySetting, HarmCategory, HarmBlockThreshold
@@ -18,10 +19,7 @@ class SF(BaseModel):
     feedback: list[str]
 
 # load the Gemini API key
-with open("config.json", "r") as config_file:
-    config = json.load(config_file)
-    api_key = config.get("GEMINI_API_KEY")
-    if not api_key: raise ValueError("API key not found in config.json")
+api_key = os.environ.get("GEMINI_API_KEY")
 
 # activate api key
 client = genai.Client(api_key=api_key)
