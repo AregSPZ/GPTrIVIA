@@ -1,12 +1,6 @@
-torch==2.6.0
-transformers==4.51.3
-sentence-transformers==4.1.0
+google-genai==1.12.1
+pydantic==2.11.4
 flask==3.1.0
 flask-wtf==1.2.2
 wtforms==3.2.1
-requests==2.32.3
-langchain==0.3.24
-langchain-community==0.3.22
-langchain-huggingface==0.1.2
-langgraph==0.3.34
-typing_extensions==4.13.2
+flask-session==0.8.0

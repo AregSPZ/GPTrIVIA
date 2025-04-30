@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if title %}
-    <title>{{ title }} - GPTrIVIA</title> 
+    <title>{{ title }} - GemMind</title> 
     {% else %}
-    <title>GPTrIVIA</title>
+    <title>GemMind</title>
     {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
 </head>
 <body>
     <main>
@@ -16,7 +17,7 @@
         {% endblock %}
     </main>
     <footer>
-        <p>&copy; 2025 GPTrIVIA</p>
+        <p>&copy; 2025 GemMind</p>
     </footer>
 </body>
 </html>

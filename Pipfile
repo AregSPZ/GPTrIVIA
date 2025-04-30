@@ -4,18 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-torch = "*"
-transformers = "*"
-sentence-transformers = "*"
 flask = "*"
 flask-wtf = "*"
 wtforms = "*"
-langchain = "*"
-langgraph = "*"
-requests = "*"
-langchain-community = "*"
-typing-extensions = "*"
-langchain-huggingface = "*"
+google-genai = "*"
+pydantic = "*"
+flask-session = "*"
 
 [dev-packages]
 

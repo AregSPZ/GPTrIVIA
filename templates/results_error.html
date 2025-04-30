@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div id="error-container">
+    <div class="error-icon">❌</div>
+    <h2>We couldn't generate quiz results... For now</h2>
+    <p>Unfortunately, we encountered an error when trying to generate the results, probably due to an error in our AI service (overload or something). The best thing we can suggeest is refreshing the page until the problem is sorted out.</p>
+    <p>We sincerely apologize for the caused inconvenience. We're sure you aced that quiz!</p>
+    
+    <div class="home-link">
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

@@ -2,18 +2,23 @@
 
 {% block content %}
 <h1>{{ title }}</h1>
-<h3>Congratulations on completing the quiz! Here are your results:</h3><br>
-{% for question, user_answer, answer, score in quiz_data %}
-    <h4 id="quas">Question {{ loop.index }}: {{ question }}<br>
-        Your Answer: {{ user_answer }}<br>
-        True Answer: {{ answer }}<br>
-        Score: {{ score }}<br><br>
-    </h4>
+<h3>Congratulations on completing the quiz! Here are your results:</h3><br><br>
+{% for question, user_answer, answer, score, feedback in quiz_data %}
+    <div id="error-container" class="question-container">
+        <h4 id="quas">Question {{ loop.index }}: {{ question }}<br><br>
+            <strong>Your</strong> Answer: {{ user_answer }}<br>
+            <strong>True</strong> Answer: {{ answer }}<br><br>
+            Score: {{ score }}<br>
+            Feedback: {{ feedback }}
+        </h4>
+    </div>
 {% endfor %}
 <br>
-<div style="text-align: center;">
+<div class="results-summary">
     <h3>Total Score: {{ total_score }} ({{ grade }}%)</h3>
     <h3>We hope you loved it!</h3>
-    <a href="{{ url_for('home') }}"><strong>Take another quiz</strong></a>
+    <div class="home-link">
+        <a href="{{ url_for('home') }}" class="submit-btn take-quiz-btn"><strong>Take another quiz</strong></a>
+    </div>
 </div>
 {% endblock %}

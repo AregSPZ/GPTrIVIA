@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div id="error-container">
+    <div class="error-icon">❌</div>
+    <h2>We couldn't generate a quiz</h2>
+    <p>Unfortunately, we encountered an error when trying to generate a quiz. This might be because:</p>
+    <ul>
+        <li>The provided topic is too niche, specialized or contains sensitive content</li>
+        <li>There was an issue with our AI service</li>
+    </ul>
+    <p>Please try a more appropriate topic or try again later, depending on your case.</p>
+    
+    <div class="home-link">
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,17 +1,19 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>{{ title }}</h1>
-<br>
-<form method="POST">
-    {{ form.hidden_tag() }}
-    {% for question, answer_field in pairs %}
-        <div>
-            <p><strong>{{ question }}</strong></p>
-            {{ answer_field.answer(size=50) }}
-        </div>
-    {% endfor %}
-    {{ form.submit_field() }}
-</form>
-<h3><strong>Note:</strong> While you take this quiz, we're forming the answers for the questions under the hood. You'll be redirected to the results page as soon as they are ready.</h3>
+<div class="quiz-container" data-difficulty="{{ difficulty }}">
+    <h1>{{ title }}</h1>
+    <div id="floating-timer"></div>
+    <br>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {% for question, answer_field in pairs %}
+            <div class="question-answer-container">
+                <p><strong>Question {{ loop.index }}:<br> {{ question }}</strong></p>
+                {{ answer_field.answer(size=50) }}
+            </div>
+        {% endfor %}
+        {{ form.submit_field(class="quiz-submit-btn") }}
+    </form>
+</div>
 {% endblock %}
